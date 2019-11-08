@@ -10,7 +10,7 @@ const Characters = () => {
 
     useEffect(() => {
       axios
-        .get("https://swapi.co/api/people")
+        .get("https://swapi.co/documentation#people")
         .then(res => {
           console.log(res.data);
           setPeople(res.data.results);
