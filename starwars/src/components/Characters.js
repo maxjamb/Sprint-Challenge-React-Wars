@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Card from "./Card";
-import App from "../App";
 
 
-const Characters = (props) => {
 
-return(
-    props.people.map((character, index) => <Card key={index} character={character}/>)
-)}
+const Characters = () => {
 
-export default Characters;
+    const [people, setPeople] = useState([]);
+
+    useEffect(() => {
+      axios
+        .get("https://swapi.co/api/people")
+        .then(res => {
+          console.log(res.data);
+          setPeople(res.data.results);
+        })
+        .catch(err => console.log(err));
+    }, []);
+  
+
+    return (
+    <>
+     
+      {people ? (
+        people.map((character, index) => (
+          <Card key={index} character={character} />
+        ))
+      ) : (
+        <h1>"Loading"</h1>
+      )} 
+    </>
+)   }
+
+export default Characters

@@ -5,7 +5,7 @@ const Card = (props) => {
     console.log(props)
 
     return(
-    <div>{props.character}</div>
+    <div>{props.character.name}</div>
     )}
 
 export default Card;
